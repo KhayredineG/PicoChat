@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lightweight AI Chat</title>
+    <style>
+        body {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+        #chat-history {
+            height: 400px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .message {
+            margin: 5px 0;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        .user-message {
+            background-color: #e3f2fd;
+            margin-left: 20%;
+        }
+        .ai-message {
+            background-color: #f5f5f5;
+            margin-right: 20%;
+        }
+        #user-input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div id="chat-history"></div>
+    <textarea id="user-input" rows="3" placeholder="Type your message here..."></textarea>
+    <button onclick="sendMessage()">Send</button>
+    <button onclick="clearHistory()">Clear History</button>
+
+    <script>
+        // Load chat history from localStorage when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            const history = JSON.parse(localStorage.getItem('chatHistory') || '[]');
+            history.forEach(msg => displayMessage(msg.text, msg.sender));
+        });
+
+        function sendMessage() {
+            const input = document.getElementById('user-input');
+            const message = input.value.trim();
+            
+            if (message) {
+                // Save and display user message
+                saveMessage(message, 'user');
+                displayMessage(message, 'user');
+                
+                // Simulate AI response (replace with actual API call)
+                fetch('https://api.groq.com/openai/v1/chat/completions', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer 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'
+                    },
+                    body: JSON.stringify({
+                        model: 'mixtral-8x7b-32768',
+                        messages: [{
+                            role: 'user',
+                            content: message
+                        }]
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    const aiResponse = data.choices[0].message.content;
+                    saveMessage(aiResponse, 'ai');
+                    displayMessage(aiResponse, 'ai');
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    const errorMessage = 'Sorry, there was an error processing your request.';
+                    saveMessage(errorMessage, 'ai');
+                    displayMessage(errorMessage, 'ai');
+                });
+
+                input.value = '';
+            }
+        }
+
+        function displayMessage(message, sender) {
+            const chatHistory = document.getElementById('chat-history');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}-message`;
+            messageDiv.textContent = message;
+            chatHistory.appendChild(messageDiv);
+            chatHistory.scrollTop = chatHistory.scrollHeight;
+        }
+
+        function saveMessage(message, sender) {
+            const history = JSON.parse(localStorage.getItem('chatHistory') || '[]');
+            history.push({ text: message, sender: sender });
+            localStorage.setItem('chatHistory', JSON.stringify(history));
+        }
+
+        function clearHistory() {
+            localStorage.removeItem('chatHistory');
+            document.getElementById('chat-history').innerHTML = '';
+        }
+
+        // Allow sending message with Enter key (Shift+Enter for new line)
+        document.getElementById('user-input').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html> 
