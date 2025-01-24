@@ -1,0 +1,17 @@
+{
+  "name": "picochat",
+  "version": "1.0.0",
+  "description": "PicoChat is an ultra-lightweight AI chat platform designed for delivering quick and accurate answers without the unnecessary fluff. Built using HTML and JavaScript, PicoChat leverages fast open-source models to provide a seamless and efficient user experience.",
+  "main": "config.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "vite": "^6.0.11"
+  }
+}
