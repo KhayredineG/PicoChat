@@ -61,12 +61,12 @@
                 saveMessage(message, 'user');
                 displayMessage(message, 'user');
                 
-                // Simulate AI response (replace with actual API call)
+                // Simulate AI response
                 fetch('https://api.groq.com/openai/v1/chat/completions', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': 'Bearer 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'
+                        'Authorization': `Bearer ${config.GROQ_API_KEY}`
                     },
                     body: JSON.stringify({
                         model: 'mixtral-8x7b-32768',
