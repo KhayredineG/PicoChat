@@ -4,43 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lightweight AI Chat</title>
-    <style>
-      body {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 20px;
-        font-family: Arial, sans-serif;
-      }
-      #chat-history {
-        height: 400px;
-        overflow-y: auto;
-        border: 1px solid #ccc;
-        padding: 10px;
-        margin-bottom: 10px;
-      }
-      .message {
-        margin: 5px 0;
-        padding: 5px;
-        border-radius: 5px;
-      }
-      .user-message {
-        background-color: #e3f2fd;
-        margin-left: 20%;
-      }
-      .ai-message {
-        background-color: #f5f5f5;
-        margin-right: 20%;
-      }
-      #user-input {
-        width: 100%;
-        padding: 10px;
-        margin-bottom: 10px;
-        box-sizing: border-box;
-      }
-    </style>
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Michroma&display=swap"
+      rel="stylesheet"
+    />
     <script type="module" src="/app.js"></script>
   </head>
   <body>
+    <h1 class="page-title">pico ai</h1>
     <div id="chat-history"></div>
     <textarea
       id="user-input"

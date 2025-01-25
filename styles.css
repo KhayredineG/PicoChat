@@ -1,0 +1,79 @@
+body {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.page-title {
+  font-family: 'Michroma', sans-serif;
+  font-weight: 400;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+#user-input {
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  padding: 8px;
+  resize: vertical;
+}
+
+button {
+  margin-right: 10px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+#chat-history {
+  height: 600px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.message {
+  margin: 5px 0;
+  padding: 5px;
+  border-radius: 5px;
+  position: relative;
+}
+
+.user-message {
+  background-color: #e3f2fd;
+  margin-left: 20%;
+}
+
+.ai-message {
+  background-color: #f5f5f5;
+  margin-right: 20%;
+  padding-right: 50px;
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+}
+
+.ai-message .copy-button {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 4px 8px;
+  margin: 2px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  cursor: pointer;
+  min-width: 45px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ai-message .copy-button:hover {
+  background-color: #e0e0e0;
+}
